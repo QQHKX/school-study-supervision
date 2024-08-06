@@ -5,7 +5,7 @@ body {
     align-items: flex-start; /* 这会将内容对齐到顶部 */
     /* 或者使用一个具体的偏移量 */
     align-items: center; /* 先居中 */
-    transform: translateY(-10%); /* 然后向上偏移10% */
+    transform: translateY(-0%); /* 然后向上偏移10% */
     min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
@@ -35,8 +35,8 @@ body {
 }
 
 #clock {
-    font-size: clamp(4rem, 16vw, 70rem);
-    margin: 20px 0;
+    font-size: clamp(4rem, 15vw, 70rem);
+    margin: 20px 5px;
 }
 
 .left-container, .right-container {
