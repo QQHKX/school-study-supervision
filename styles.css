@@ -2,107 +2,95 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f0f0f0;
     margin: 0;
     font-family: Arial, sans-serif;
-    position: relative;
-    overflow: hidden; /* 禁止滚动 */
+    overflow-x: hidden;
 }
 
 .main-container {
     display: flex;
-    justify-content: space-between; /* 调整为两侧对齐 */
-    align-items: flex-start;
-    width: 90%; /* 宽度适应不同屏幕 */
-    max-width: 1200px; /* 最大宽度 */
-    margin: 20px;
-    flex-wrap: nowrap; /* 禁止换行 */
+    justify-content: space-between;
+    align-items: stretch;
+    width: 95%;
+    max-width: 1400px;
+    margin: 20px auto;
+    gap: 20px;
 }
 
 .clock-container {
+    flex: 2;
     text-align: center;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex-grow: 1;
-    margin: 0 20px;
 }
 
 #clock {
-    font-size: 192px; /* 增大字体 */
+    font-size: clamp(4rem, 10vw, 12rem);
     margin: 20px 0;
 }
 
 .left-container, .right-container {
+    flex: 1;
     background: #fff;
-    padding: 10px; /* 缩小 padding */
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-height: 80vh;
-    overflow-y: hidden; /* 禁止滚动 */
-    width: 25%; /* 调整宽度 */
-    margin: 0;
-}
-
-.left-container {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.right-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 14px; /* 缩小文字 */
+    overflow-y: auto;
 }
 
 .side-container {
-    position: fixed; /* 固定位置 */
-    top: 20px;
+    position: fixed;
+    top: 0;
     right: 0;
     width: 300px;
-    height: calc(100vh - 40px); /* 使右边栏填满高度 */
+    height: 100vh;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    transition: right 0.5s;
-    overflow: hidden; /* 禁止滚动 */
-    z-index: 1000; /* 确保在最前 */
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+    overflow-y: auto;
+    z-index: 1000;
+    transform: translateX(100%);
+}
+
+.side-container.visible {
+    transform: translateX(0);
 }
 
 .side-container.hidden {
-    right: -310px;
+    transform: translateX(310px);
 }
 
 .set-time-container, .record-container {
-    padding: 10px;
+    padding: 20px;
 }
 
 button {
     width: 100%;
     margin: 10px 0;
-    padding: 10px 0;
-    font-size: 16px;
+    padding: 12px 0;
+    font-size: 1rem;
     cursor: pointer;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #45a049; /* 添加悬停效果 */
+    background-color: #45a049;
 }
 
 input[type="time"], input[type="text"] {
     width: calc(100% - 20px);
-    margin: 5px 10px;
-    padding: 10px;
-    font-size: 16px;
+    margin: 10px 0;
+    padding: 12px;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -113,69 +101,71 @@ ul {
 }
 
 li {
-    margin: 5px 0;
-    padding: 10px;
+    margin: 10px 0;
+    padding: 12px;
     background: #f0f0f0;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    white-space: nowrap; /* 禁止文字换行 */
+    flex-wrap: wrap;
 }
 
 h2 {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 1.5rem;
     text-align: center;
 }
 
 #toggleButton {
-    position: fixed; /* 固定位置 */
-    top: 50%; /* 页面右侧中部 */
+    position: fixed;
+    top: 50%;
     right: 0;
     transform: translateY(-50%);
     background: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
-    padding: 5px; /* 调整按钮大小 */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px;
     cursor: pointer;
-    transition: right 0.5s;
-    z-index: 1001; /* 确保在最前 */
-    opacity: 0.5; /* 添加透明度 */
-    font-size: 12px; /* 调整字体大小 */
+    transition: opacity 0.3s;
+    z-index: 1001;
+    opacity: 0.7;
+    font-size: 1rem;
 }
 
 #toggleButton:hover {
-    opacity: 0.8; /* 悬停时调整透明度 */
+    opacity: 1;
 }
 
-.hidden-toggle {
-    display: none;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .main-container {
         flex-direction: column;
-        align-items: center;
     }
-    
-    .left-container, .right-container, .clock-container {
-        margin: 10px 0;
-        width: 100%; /* 响应式调整 */
+
+    .left-container, .right-container {
+        width: 100%;
+        max-height: none;
     }
-    
+
+    #clock {
+        font-size: clamp(3rem, 8vw, 8rem);
+    }
+}
+
+@media (max-width: 600px) {
     .side-container {
-        width: 80%;
-        right: -90%;
-    }
-    
-    .side-container.hidden {
+        width: 100%;
         right: -100%;
     }
-    
+
+    .side-container.hidden {
+        transform: translateX(100%);
+    }
+
     #toggleButton {
-        right: 10px;
+        padding: 8px;
+        font-size: 0.9rem;
     }
 }

@@ -90,7 +90,7 @@ function renderRecords() {
 
 document.getElementById('toggleButton').addEventListener('click', () => {
     const sideContainer = document.getElementById('sideContainer');
-    sideContainer.classList.toggle('hidden');
+    sideContainer.classList.toggle('visible');
     document.getElementById('toggleButton').classList.toggle('hidden-toggle');
 });
 
@@ -98,7 +98,7 @@ let idleTimer;
 function resetIdleTimer() {
     clearTimeout(idleTimer);
     idleTimer = setTimeout(() => {
-        document.getElementById('sideContainer').classList.add('hidden');
+        document.getElementById('sideContainer').classList.remove('visible');
         document.getElementById('toggleButton').classList.remove('hidden-toggle');
     }, 5000); // 5秒无操作隐藏右边栏
 }
@@ -112,3 +112,9 @@ window.onload = () => {
     renderEndTimes();
     renderRecords();
 };
+
+document.getElementById('clock').addEventListener('dblclick', () => {
+    const sideContainer = document.getElementById('sideContainer');
+    sideContainer.classList.toggle('visible');
+    document.getElementById('toggleButton').classList.toggle('hidden-toggle');
+});
