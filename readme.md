@@ -61,7 +61,7 @@
 1. 将项目克隆或下载到本地。
 
    ```bash
-   git clone https://github.com/your-repo/study-session-clock.git
+   git clone https://github.com/QQHKX/school-study-supervision.git
    ```
 
 2. 确保所有文件在同一目录下，包括 `index.html`, `styles.css`, `script.js`, 和 `alert.mp3`。
