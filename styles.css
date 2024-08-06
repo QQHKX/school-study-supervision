@@ -1,48 +1,53 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* 将align-items改为以下的值 */
+    align-items: flex-start; /* 这会将内容对齐到顶部 */
+    /* 或者使用一个具体的偏移量 */
+    align-items: center; /* 先居中 */
+    transform: translateY(-10%); /* 然后向上偏移10% */
     min-height: 100vh;
-    background-color: #f0f0f0;
     margin: 0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
-    user-select: none; /* 禁止选中文字 */
+    user-select: none;
+    background: #f0f0f0 url() no-repeat center center fixed;
 }
 
 .main-container {
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-start; /* Align items to the start */
     width: 95%;
     max-width: 1400px;
     margin: 20px auto;
     gap: 20px;
+ 
 }
 
 .clock-container {
-    flex: 3;  /* 增加中间时钟部分的比例 */
+    flex: 5; /* Increase the flex value to make it larger */
     text-align: center;
     background: #fff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #clock {
-    font-size: clamp(4rem, 10vw, 12rem);
+    font-size: clamp(4rem, 16vw, 70rem);
     margin: 20px 0;
 }
 
 .left-container, .right-container {
-    flex: 0.5;  /* 减小左右容器的比例 */
+    flex: 1; /* Decrease the flex value to make them smaller */
     background: #fff;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-height: 80vh;
+    max-height: none; /* Remove the fixed height */
     overflow-y: auto;
-    font-size: 0.9rem;  /* 减小整体字体大小 */
+    font-size: 0.8rem; /* Decrease the font size */
 }
 
 .side-container {
@@ -115,21 +120,26 @@ li {
 
 h2 {
     margin-top: 0;
-    font-size: 1.2rem;  /* 减小标题字体大小 */
+    font-size: 0.8rem;
     text-align: center;
 }
 
 #endTimesList div, #recordList li {
-    font-size: 0.85rem;  /* 进一步减小列表项的字体大小 */
+    font-size: 0.75rem; /* Decrease the font size */
     margin: 5px 0;
     padding: 8px;
     background: #f0f0f0;
     border-radius: 5px;
 }
 
+#endTimesList button {
+    font-size: 0.8rem;
+    padding: 2px 4px;
+}
+
 #toggleButton {
     position: fixed;
-    top: 50%;
+    top: 90%;
     right: 0;
     transform: translateY(-50%);
     background: #4CAF50;
@@ -147,8 +157,8 @@ h2 {
 }
 
 #recordList li button {
-    font-size: 0.8rem;  /* 减小按钮字体大小 */
-    padding: 5px 8px;
+    font-size: 0.8rem;
+    padding: 2px 4px;
 }
 
 #toggleButton:hover {
@@ -163,17 +173,17 @@ h2 {
     .left-container, .right-container {
         width: 100%;
         max-height: none;
-        font-size: 1rem;  /* 在小屏幕上稍微增大字体，保证可读性 */
+        font-size: 1rem;
     }
 
     #clock {
-        font-size: clamp(3rem, 8vw, 8rem);
+        font-size: clamp(5rem, 10vw, 10rem); /* Adjust font size for smaller screens */
     }
 }
 
 @media (max-width: 600px) {
     .left-container, .right-container {
-        font-size: 0.9rem;
+        font-size: 0.8rem; /* Adjust font size for smaller screens */
     }
 
     h2 {
