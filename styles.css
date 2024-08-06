@@ -7,6 +7,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+    user-select: none; /* 禁止选中文字 */
 }
 
 .main-container {
@@ -20,7 +21,7 @@ body {
 }
 
 .clock-container {
-    flex: 2;
+    flex: 3;  /* 增加中间时钟部分的比例 */
     text-align: center;
     background: #fff;
     padding: 20px;
@@ -34,13 +35,14 @@ body {
 }
 
 .left-container, .right-container {
-    flex: 1;
+    flex: 0.5;  /* 减小左右容器的比例 */
     background: #fff;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-height: 80vh;
     overflow-y: auto;
+    font-size: 0.9rem;  /* 减小整体字体大小 */
 }
 
 .side-container {
@@ -113,8 +115,16 @@ li {
 
 h2 {
     margin-top: 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;  /* 减小标题字体大小 */
     text-align: center;
+}
+
+#endTimesList div, #recordList li {
+    font-size: 0.85rem;  /* 进一步减小列表项的字体大小 */
+    margin: 5px 0;
+    padding: 8px;
+    background: #f0f0f0;
+    border-radius: 5px;
 }
 
 #toggleButton {
@@ -133,6 +143,12 @@ h2 {
     z-index: 1001;
     opacity: 0.7;
     font-size: 1rem;
+    width: 8px;
+}
+
+#recordList li button {
+    font-size: 0.8rem;  /* 减小按钮字体大小 */
+    padding: 5px 8px;
 }
 
 #toggleButton:hover {
@@ -147,6 +163,7 @@ h2 {
     .left-container, .right-container {
         width: 100%;
         max-height: none;
+        font-size: 1rem;  /* 在小屏幕上稍微增大字体，保证可读性 */
     }
 
     #clock {
@@ -155,17 +172,11 @@ h2 {
 }
 
 @media (max-width: 600px) {
-    .side-container {
-        width: 100%;
-        right: -100%;
-    }
-
-    .side-container.hidden {
-        transform: translateX(100%);
-    }
-
-    #toggleButton {
-        padding: 8px;
+    .left-container, .right-container {
         font-size: 0.9rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
     }
 }
