@@ -118,3 +118,14 @@ document.getElementById('clock').addEventListener('dblclick', () => {
     sideContainer.classList.toggle('visible');
     document.getElementById('toggleButton').classList.toggle('hidden-toggle');
 });
+
+document.getElementById('darkModeToggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+});
+
+window.addEventListener('load', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+});

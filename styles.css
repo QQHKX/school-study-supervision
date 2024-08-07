@@ -1,37 +1,56 @@
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --container-bg: #fff;
+    --container-shadow: rgba(0, 0, 0, 0.1);
+    --button-bg: #4CAF50;
+    --button-hover: #45a049;
+    --input-border: #ccc;
+}
+
+.dark-mode {
+    --bg-color: #333;
+    --text-color: #f0f0f0;
+    --container-bg: #555;
+    --container-shadow: rgba(0, 0, 0, 0.3);
+    --button-bg: #2a752e;
+    --button-hover: #225f25;
+    --input-border: #777;
+}
+
 body {
     display: flex;
     justify-content: center;
-    /* 将align-items改为以下的值 */
-    align-items: flex-start; /* 这会将内容对齐到顶部 */
-    /* 或者使用一个具体的偏移量 */
-    align-items: center; /* 先居中 */
-    transform: translateY(-0%); /* 然后向上偏移10% */
+    align-items: flex-start;
     min-height: 100vh;
     margin: 0;
+    padding-top: 5vh;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
     user-select: none;
-    background: #f0f0f0 url() no-repeat center center fixed;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    overflow: hidden; /* 隐藏滚动条 */
 }
 
 .main-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align items to the start */
+    align-items: flex-start;
     width: 95%;
     max-width: 1400px;
     margin: 20px auto;
     gap: 20px;
- 
 }
 
 .clock-container {
-    flex: 5; /* Increase the flex value to make it larger */
+    flex: 5;
     text-align: center;
-    background: #fff;
+    background: var(--container-bg);
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px var(--container-shadow);
 }
 
 #clock {
@@ -40,49 +59,49 @@ body {
 }
 
 .left-container, .right-container {
-    flex: 1; /* Decrease the flex value to make them smaller */
-    background: #fff;
+    flex: 1;
+    background: var(--container-bg);
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-height: none; /* Remove the fixed height */
+    box-shadow: 0 0 10px var(--container-shadow);
     overflow-y: auto;
-    font-size: 0.8rem; /* Decrease the font size */
+    font-size: 0.8rem;
 }
 
 .side-container {
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100vh;
-    background: #fff;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-out;
+    bottom: 20px;
+    right: 20px;
+    width: 250px;
+    height: 350px;
+    background: var(--container-bg);
+    box-shadow: 0 0 15px var(--container-shadow);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     overflow-y: auto;
     z-index: 1000;
-    transform: translateX(100%);
+    transform: translateY(120%);
+    opacity: 0;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    overflow: hidden; /* 隐藏滚动条 */
 }
 
 .side-container.visible {
-    transform: translateX(0);
-}
-
-.side-container.hidden {
-    transform: translateX(310px);
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .set-time-container, .record-container {
-    padding: 20px;
+    padding: 15px;
 }
 
 button {
     width: 100%;
-    margin: 10px 0;
-    padding: 12px 0;
-    font-size: 1rem;
+    margin: 8px 0;
+    padding: 10px 0;
+    font-size: 0.9rem;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: var(--button-bg);
     color: white;
     border: none;
     border-radius: 5px;
@@ -90,16 +109,18 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--button-hover);
 }
 
 input[type="time"], input[type="text"] {
-    width: calc(100% - 20px);
-    margin: 10px 0;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
+    width: calc(100% - 16px);
+    margin: 8px 0;
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid var(--input-border);
     border-radius: 5px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
 }
 
 ul {
@@ -108,60 +129,66 @@ ul {
 }
 
 li {
-    margin: 10px 0;
-    padding: 12px;
-    background: #f0f0f0;
+    margin: 8px 0;
+    padding: 10px;
+    background: var(--bg-color);
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    font-size: 0.8rem;
 }
 
 h2 {
     margin-top: 0;
-    font-size: 0.8rem;
+    font-size: 1rem;
     text-align: center;
 }
 
 #endTimesList div, #recordList li {
-    font-size: 0.75rem; /* Decrease the font size */
+    font-size: 0.8rem;
     margin: 5px 0;
     padding: 8px;
-    background: #f0f0f0;
+    background: var(--bg-color);
     border-radius: 5px;
 }
 
-#endTimesList button {
+#endTimesList button, #recordList li button {
     font-size: 0.8rem;
     padding: 2px 4px;
+    width: auto;
 }
 
-#toggleButton {
+#toggleButton, #darkModeToggle {
     position: fixed;
-    top: 90%;
-    right: 0;
-    transform: translateY(-50%);
-    background: #4CAF50;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--button-bg);
     color: white;
     border: none;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding: 10px;
     cursor: pointer;
     transition: opacity 0.3s;
     z-index: 1001;
     opacity: 0.7;
-    font-size: 1rem;
-    width: 8px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#recordList li button {
-    font-size: 0.8rem;
-    padding: 2px 4px;
+#toggleButton {
+    bottom: 20px;
+    right: 20px;
 }
 
-#toggleButton:hover {
+#darkModeToggle {
+    bottom: 80px;
+    right: 20px;
+}
+
+#toggleButton:hover, #darkModeToggle:hover {
     opacity: 1;
 }
 
@@ -173,20 +200,27 @@ h2 {
     .left-container, .right-container {
         width: 100%;
         max-height: none;
-        font-size: 1rem;
     }
 
     #clock {
-        font-size: clamp(5rem, 10vw, 10rem); /* Adjust font size for smaller screens */
+        font-size: clamp(5rem, 10vw, 10rem);
     }
 }
 
 @media (max-width: 600px) {
-    .left-container, .right-container {
-        font-size: 0.8rem; /* Adjust font size for smaller screens */
+    .side-container {
+        width: 90%;
+        right: 5%;
+        left: 5%;
     }
 
-    h2 {
-        font-size: 1.1rem;
+    #toggleButton {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    #darkModeToggle {
+        right: 10px;
+        bottom: 70px;
     }
 }
