@@ -34,8 +34,18 @@
             </form>
         </div>
     </div>
-    <button id="toggleButton" class="hidden-toggle">☰</button>
+    <button id="toggleButton">☰</button>
     <button id="darkModeToggle">🌓</button>
+    <button id="settingsButton">⚙️</button>
+    <div id="settingsContainer">
+        <h2>设置</h2>
+        <label for="bgColorPicker">背景颜色：</label>
+        <input type="color" id="bgColorPicker">
+        <label for="bgImageUrl">背景图片URL：</label>
+        <input type="text" id="bgImageUrl" placeholder="输入图片URL">
+        <button id="applyBgImage">应用背景图片</button>
+        <button id="resetToDefault">恢复默认设置</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

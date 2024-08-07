@@ -14,7 +14,7 @@ function checkEndTime(now) {
         const [endHours, endMinutes] = endTime.split(':').map(Number);
         if (now.getHours() === endHours && now.getMinutes() === endMinutes && now.getSeconds() === 0) {
             alert("下课时间到了！");
-            const audio = new Audio('alert.mp3'); // 确保您有一段名为alert.mp3的音频文件
+            const audio = new Audio('alert.mp3');
             audio.play();
         }
     });
@@ -100,18 +100,11 @@ function resetIdleTimer() {
     idleTimer = setTimeout(() => {
         document.getElementById('sideContainer').classList.remove('visible');
         document.getElementById('toggleButton').classList.remove('hidden-toggle');
-    }, 5000); // 5秒无操作隐藏右边栏
+    }, 5000);
 }
 
 document.addEventListener('mousemove', resetIdleTimer);
 document.addEventListener('keydown', resetIdleTimer);
-
-window.onload = () => {
-    updateTime();
-    setInterval(updateTime, 1000);
-    renderEndTimes();
-    renderRecords();
-};
 
 document.getElementById('clock').addEventListener('dblclick', () => {
     const sideContainer = document.getElementById('sideContainer');
@@ -119,13 +112,66 @@ document.getElementById('clock').addEventListener('dblclick', () => {
     document.getElementById('toggleButton').classList.toggle('hidden-toggle');
 });
 
+const settingsContainer = document.getElementById('settingsContainer');
+const bgColorPicker = document.getElementById('bgColorPicker');
+const bgImageUrl = document.getElementById('bgImageUrl');
+const applyBgImageBtn = document.getElementById('applyBgImage');
+const resetToDefaultBtn = document.getElementById('resetToDefault');
+
+document.getElementById('settingsButton').addEventListener('click', () => {
+    settingsContainer.classList.toggle('visible');
+});
+
 document.getElementById('darkModeToggle').addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 });
 
-window.addEventListener('load', () => {
+bgColorPicker.addEventListener('change', (e) => {
+    document.body.style.backgroundColor = e.target.value;
+    document.body.style.backgroundImage = 'none';
+    localStorage.setItem('customBackground', e.target.value);
+});
+
+applyBgImageBtn.addEventListener('click', () => {
+    const imageUrl = bgImageUrl.value;
+    if (imageUrl) {
+        document.body.style.backgroundImage = `url(${imageUrl})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        localStorage.setItem('customBackground', imageUrl);
+    }
+});
+
+resetToDefaultBtn.addEventListener('click', () => {
+    document.body.style.backgroundColor = '';
+    document.body.style.backgroundImage = 'none';
+    localStorage.removeItem('customBackground');
+    bgColorPicker.value = '#f0f0f0';
+    bgImageUrl.value = '';
+});
+
+window.onload = () => {
+    updateTime();
+    setInterval(updateTime, 1000);
+    renderEndTimes();
+    renderRecords();
+    
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
     }
-});
+    
+    const savedBg = localStorage.getItem('customBackground');
+    if (savedBg) {
+        if (savedBg.startsWith('http') || savedBg.startsWith('https')) {
+            document.body.style.backgroundImage = `url(${savedBg})`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+            bgImageUrl.value = savedBg;
+        } else {
+            document.body.style.backgroundColor = savedBg;
+            document.body.style.backgroundImage = 'none';
+            bgColorPicker.value = savedBg;
+        }
+    }
+};
