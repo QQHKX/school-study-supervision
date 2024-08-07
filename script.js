@@ -13,7 +13,6 @@ function checkEndTime(now) {
     endTimes.forEach(endTime => {
         const [endHours, endMinutes] = endTime.split(':').map(Number);
         if (now.getHours() === endHours && now.getMinutes() === endMinutes && now.getSeconds() === 0) {
-            alert("下课时间到了！");
             const audio = new Audio('alert.mp3');
             audio.play();
         }
