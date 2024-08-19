@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>晚自习时钟</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="main-container">
-        <div class="left-container">
-            <h2>下课时间</h2>
-            <div id="endTimesList"></div>
-        </div>
-        <div class="clock-container">
-            <div id="clock">00:00:00</div>
-        </div>
-        <div class="right-container">
-            <h2>请假记录</h2>
-            <ul id="recordList"></ul>
-        </div>
+      <div class="left-container">
+        <h2>下课时间</h2>
+        <div id="endTimesList"></div>
+      </div>
+      <div class="clock-container">
+        <div id="clock">00:00:00</div>
+      </div>
+      <div class="right-container">
+        <h2>请假记录</h2>
+        <ul id="recordList"></ul>
+      </div>
     </div>
     <div class="side-container" id="sideContainer">
-        <div class="set-time-container">
-            <input type="time" id="endTime" placeholder="设置下课时间">
-            <button id="addEndTime">添加下课时间</button>
-        </div>
-        <div class="record-container">
-            <h2>登记离开</h2>
-            <form id="leaveForm">
-                <input type="text" id="studentName" placeholder="姓名" required>
-                <input type="text" id="reason" placeholder="请假原因" required>
-                <button type="submit">登记离开</button>
-            </form>
-        </div>
+      <div class="set-time-container">
+        <input type="time" id="endTime" placeholder="设置下课时间" />
+        <button id="addEndTime">添加下课时间</button>
+      </div>
+      <div class="record-container">
+        <h2>登记离开</h2>
+        <form id="leaveForm">
+          <input type="text" id="studentName" placeholder="姓名" required />
+          <input type="text" id="reason" placeholder="请假原因" required />
+          <button type="submit">登记离开</button>
+        </form>
+      </div>
     </div>
     <button id="toggleButton">☰</button>
     <button id="darkModeToggle">🌓</button>
     <button id="settingsButton">⚙️</button>
     <div id="settingsContainer">
-        <h2>设置</h2>
-        <label for="bgColorPicker">背景颜色：</label>
-        <input type="color" id="bgColorPicker">
-        <label for="bgImageUrl">背景图片URL：</label>
-        <input type="text" id="bgImageUrl" placeholder="输入图片URL">
-        <button id="applyBgImage">应用背景图片</button>
-        <button id="resetToDefault">恢复默认设置</button>
+      <h2>设置</h2>
+      <label for="bgColorPicker">背景颜色：</label>
+      <input type="color" id="bgColorPicker" />
+      <label for="bgImageUrl">背景图片URL：</label>
+      <input type="text" id="bgImageUrl" placeholder="输入图片URL" />
+      <button id="applyBgImage">应用背景图片</button>
+      <button id="resetToDefault">恢复默认设置</button>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
